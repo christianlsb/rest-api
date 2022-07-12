@@ -3,9 +3,6 @@ package rest.api.rotas;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-
 import rest.api.model.Usuario;
 import rest.api.service.UsuarioService;
 
@@ -19,17 +16,17 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-    @GetMapping("/user")
+    @GetMapping("/usuario")
       public List<Usuario> findAll(){
          return usuarioService.findAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/usuario/{id}")
       public Optional<Usuario> findById(@PathVariable long id){
          return usuarioService.findById(id);
     }
 
-    @PostMapping("/createUser")
+    @PostMapping("/usuario")
      public String createNewUser(@RequestBody Usuario usuario){
         try {
             usuarioService.save(usuario);
@@ -38,6 +35,18 @@ public class UsuarioController {
             throw new IllegalArgumentException("Erro", e);
         }
     }
+
+    @PutMapping("/usuario/{id}")
+    public Usuario update(@RequestBody Usuario usuario, @PathVariable long id){
+        return  usuarioService.update(usuario, id);
+    }
+
+
+    @DeleteMapping("/usuario/{id}")
+        public void delete(@PathVariable long id){
+             usuarioService.delete(id);
+    }
+
 
 
 }

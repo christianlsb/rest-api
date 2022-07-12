@@ -32,12 +32,23 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario update(Usuario usuario, long id) {
-        return null;
+    public Usuario update(Usuario updatedUsuario, long id) {
+        return usuarioRepository.findById(id)
+                .map(u -> {
+                    u.setNome(updatedUsuario.getNome());
+                    u.setUsername(updatedUsuario.getUsername());
+                    u.setSenha(updatedUsuario.getSenha());
+                    return usuarioRepository.save(u);
+                })
+                .orElseGet(() ->{
+                    updatedUsuario.setId(id);
+                    return  usuarioRepository.save(updatedUsuario);
+                });
     }
 
     @Override
     public void delete(long id) {
+        usuarioRepository.deleteById(id);
     }
 
     @Override
@@ -48,4 +59,6 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new IllegalArgumentException("Fudeo", e);
         }
     }
+
+   
 }
