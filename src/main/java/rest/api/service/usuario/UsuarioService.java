@@ -1,4 +1,4 @@
-package rest.api.service;
+package rest.api.service.usuario;
 
 import org.jboss.jandex.TypeTarget;
 import rest.api.model.Usuario;

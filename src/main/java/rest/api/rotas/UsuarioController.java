@@ -4,7 +4,7 @@ package rest.api.rotas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rest.api.model.Usuario;
-import rest.api.service.UsuarioService;
+import rest.api.service.usuario.UsuarioService;
 
 import java.util.List;
 import java.util.Optional;

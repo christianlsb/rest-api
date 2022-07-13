@@ -1,13 +1,14 @@
-package rest.api.service;
+package rest.api.service.usuario;
 
 import rest.api.model.Usuario;
-import rest.api.repository.UsuarioRepository;
+import rest.api.repository.usuario.UsuarioRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rest.api.service.usuario.UsuarioService;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
