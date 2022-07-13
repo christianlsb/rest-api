@@ -1,11 +1,9 @@
 package rest.api.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @Entity(name = "Usuario")
@@ -28,6 +26,8 @@ public class Usuario {
     @NotNull
     private String senha;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Produto> produtos;
 
     public Long getId() {
         return id;
