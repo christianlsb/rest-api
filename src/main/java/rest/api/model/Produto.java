@@ -1,6 +1,8 @@
 package rest.api.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,13 +20,22 @@ public class Produto {
     @NotNull
     private String nomeDoProduto;
 
-    @Size(max = 2)
+    @Size(max = 150)
     @NotNull
     private String quantidadeDoProduto;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "usuario_id")
+    @JsonBackReference
     private Usuario usuario;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public Produto() {}
 

@@ -1,9 +1,13 @@
 package rest.api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity(name = "Usuario")
@@ -27,7 +31,17 @@ public class Usuario {
     private String senha;
 
     @OneToMany(mappedBy = "usuario")
-    private List<Produto> produtos;
+    @JsonManagedReference
+    private Set<Produto> produtos_list;
+
+
+    public Set<Produto> getProdutos_list() {
+        return produtos_list;
+    }
+
+    public void setProdutos_list(Set<Produto> produtos_list) {
+        this.produtos_list = produtos_list;
+    }
 
     public Long getId() {
         return id;
